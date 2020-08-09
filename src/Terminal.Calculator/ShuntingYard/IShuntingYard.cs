@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Terminal.Calculator
 {
     public interface IShuntingYard
@@ -5,5 +7,7 @@ namespace Terminal.Calculator
         void Output();
 
         void ConvertToPostfix();
+
+        string GetPostfix();
     }
 }

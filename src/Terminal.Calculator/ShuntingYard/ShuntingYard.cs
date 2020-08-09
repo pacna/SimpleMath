@@ -98,6 +98,17 @@ namespace Terminal.Calculator
             }
         }
 
+        public string GetPostfix()
+        {
+            string postfixString = "";
+            foreach(var x in _outputQueue)
+            {
+                postfixString = postfixString + x;
+            }
+            
+            return postfixString;
+        }
+
         private bool IsThereAnyOperatorInStack()
         {
             if(_operatorStack.Any())
