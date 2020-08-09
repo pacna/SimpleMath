@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ShuntingYard.Tests
 {
-    public class UnitTest1
+    public class ShuntingYardTests
     {
         [Fact]
         public void Test1()
