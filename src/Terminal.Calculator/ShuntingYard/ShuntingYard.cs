@@ -56,7 +56,6 @@ namespace Terminal.Calculator
         private readonly char[] trimmer = {'\0'};
         public ShuntingYard(string input)
         {
-            input = Helper.RemoveWhiteSpace(input);
             this._input = input.ToCharArray();
         }
 

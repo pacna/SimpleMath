@@ -15,6 +15,7 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldDisplayTheCorrectPostfixNotation(string input, string expectedOutput)
         {
             // ARRANGE
+            input = Helper.RemoveWhiteSpace(input);
             ShuntingYard sy = new ShuntingYard(input);
             sy.ConvertToPostfix();
 
@@ -34,6 +35,7 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldEvaluatetheExpressionCorrectly(string input, double expectedOutput)
         {
             // ARRANGE
+            input = Helper.RemoveWhiteSpace(input);
             ShuntingYard sy = new ShuntingYard(input);
             sy.ConvertToPostfix();
 
