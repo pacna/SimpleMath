@@ -11,7 +11,7 @@ namespace Terminal.Calculator
         private Queue<char> _outputQueue = new Queue<char>();
         private Dictionary<char, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<char, OperatorPrecedenceModel>() {
             {
-                '^', 
+                OperatorTypes.Power, 
                 new OperatorPrecedenceModel() 
                 {
                     Precedence = 3,
@@ -19,7 +19,7 @@ namespace Terminal.Calculator
                 }
             },
             {
-                '*',
+                OperatorTypes.Multiplication,
                 new OperatorPrecedenceModel()
                 {
                     Precedence = 2,
@@ -28,7 +28,7 @@ namespace Terminal.Calculator
                 
             },
             {
-                '/',
+                OperatorTypes.Division,
                 new OperatorPrecedenceModel()
                 {
                     Precedence = 2,
@@ -36,7 +36,7 @@ namespace Terminal.Calculator
                 }
             },
             {
-                '+',
+                OperatorTypes.Addition,
                 new OperatorPrecedenceModel()
                 {
                     Precedence = 1,
@@ -44,7 +44,7 @@ namespace Terminal.Calculator
                 }
             },
             {
-                '-',
+                OperatorTypes.Subtraction,
                 new OperatorPrecedenceModel()
                 {
                     Precedence = 1,
@@ -56,7 +56,7 @@ namespace Terminal.Calculator
         private readonly char[] trimmer = {'\0'};
         public ShuntingYard(string input)
         {
-            input = RemoveWhitespace(input);
+            input = Helper.RemoveWhiteSpace(input);
             this._input = input.ToCharArray();
         }
 
@@ -111,14 +111,7 @@ namespace Terminal.Calculator
 
         private bool IsThereAnyOperatorInStack()
         {
-            if(_operatorStack.Any())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _operatorStack.Any();
         }
 
         private bool hasHigherOrEqualPrecedence(char incomingOp)
@@ -147,14 +140,13 @@ namespace Terminal.Calculator
 
         private bool IsNotLeftParenthesis(char incomingOp)
         {
-            return incomingOp != '(';
+            return incomingOp != OperatorTypes.LeftParenthesis;
         }
 
         private bool IsRightParenthesis(char incomingOp)
         {
-            return incomingOp == ')';
+            return incomingOp == OperatorTypes.RightParenthesis;
         }
-
 
         private bool IsOperator(char op)
         {
@@ -194,17 +186,56 @@ namespace Terminal.Calculator
             }
         }
         
-        public void Output()
+        public double Evaluate()
         {
-            Console.WriteLine(_input.Length);
-        }
+            Stack<double> outputStack = new Stack<double>();
+            char[] postfix = GetPostfix().ToCharArray();
+            foreach(var x in postfix)
+            {
+                if (Char.IsDigit(x))
+                {
+                    double operand = Convert.ToDouble(Char.GetNumericValue(x));
+                    outputStack.Push(operand);
+                }
+                else
+                {
+                    /**
+                        34+ (reading from left to right when evaluating)
+                        rightOperand is 4
+                        leftOperand is 3
+                    **/
+                    double rightOperand = outputStack.Pop();
+                    double leftOperand = outputStack.Pop();
 
-        public string RemoveWhitespace(string input)
-        {
-            return new string(input.ToCharArray()
-                .Where(c => !Char.IsWhiteSpace(c))
-                .ToArray());
+                    if (x == OperatorTypes.Addition)
+                    {
+                        double result =  leftOperand + rightOperand;
+                        outputStack.Push(result);
+                    }
+                    else if (x == OperatorTypes.Subtraction)
+                    {
+                        double result = leftOperand - rightOperand;
+                        outputStack.Push(result);
+                    }
+                    else if (x == OperatorTypes.Multiplication)
+                    {
+                        double result = leftOperand * rightOperand;
+                        outputStack.Push(result);
+                    }
+                    else if ( x == OperatorTypes.Division)
+                    {
+                        double result = leftOperand / rightOperand;
+                        outputStack.Push(result);
+                    }
+                    else 
+                    {// this must be pow
+                        double result = Math.Pow(leftOperand, rightOperand);
+                        outputStack.Push(result);
+                    }
+                }
+            }
+            
+            return outputStack.Peek();
         }
-
     }
 }

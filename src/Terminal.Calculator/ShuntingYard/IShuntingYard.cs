@@ -4,7 +4,7 @@ namespace Terminal.Calculator
 {
     public interface IShuntingYard
     {
-        void Output();
+        double Evaluate();
 
         void ConvertToPostfix();
 

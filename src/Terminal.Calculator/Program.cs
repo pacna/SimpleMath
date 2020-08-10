@@ -10,8 +10,7 @@ namespace Terminal.Calculator
             string input = Console.ReadLine();
             ShuntingYard sy = new ShuntingYard(input);
             sy.ConvertToPostfix();
-            sy.PrintQueue();
-            sy.PrintStack();
+            Console.WriteLine(sy.Evaluate());
         }
     }
 }
