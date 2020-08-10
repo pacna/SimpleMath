@@ -7,7 +7,7 @@
 
 ### Run
 ```
-    dotnet run
+dotnet run
 ```
 
 ## Run tests
