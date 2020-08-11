@@ -1,5 +1,7 @@
 # Terminal Calculator
 
+A basic calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+
 ## Running the app locally
 
 ### Prerequisites
