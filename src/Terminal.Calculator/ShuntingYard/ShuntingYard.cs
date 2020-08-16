@@ -53,7 +53,6 @@ namespace Terminal.Calculator
             }
         };
 
-        private readonly char[] trimmer = {'\0'};
         public ShuntingYard(string input)
         {
             this._input = input.ToCharArray();
