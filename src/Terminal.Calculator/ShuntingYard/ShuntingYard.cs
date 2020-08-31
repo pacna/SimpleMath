@@ -68,7 +68,7 @@ namespace Terminal.Calculator
                 }
                 else if (IsOperator(token))
                 {
-                    while (IsThereAnyOperatorInStack() && hasHigherOrEqualPrecedence(token))
+                    while (IsThereAnyOperatorInStack() && HasHigherOrEqualPrecedence(token))
                     {
                         char opFromStack = _operatorStack.Pop();
                         _outputQueue.Enqueue(opFromStack);
@@ -112,7 +112,7 @@ namespace Terminal.Calculator
             return _operatorStack.Any();
         }
 
-        private bool hasHigherOrEqualPrecedence(char incomingOp)
+        private bool HasHigherOrEqualPrecedence(char incomingOp)
         {
             if (IsNotLeftParenthesis(_operatorStack.Peek()))
             {
