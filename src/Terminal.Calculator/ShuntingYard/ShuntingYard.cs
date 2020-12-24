@@ -151,38 +151,6 @@ namespace Terminal.Calculator
             bool doesExist = _operatorPrecedence.ContainsKey(op);
             return doesExist;
         }
-
-        public void PrintQueue()
-        {
-            char[] result = _outputQueue.ToArray();
-            for(var i = 0; i < result.Length; i++)
-            {
-                if (i == result.Length - 1)
-                {
-                    Console.Write($"{result[i]} \n");
-                }
-                else
-                {
-                    Console.Write($"{result[i]}");
-                }
-            }
-        }
-
-        public void PrintStack()
-        {
-            char[] result = _operatorStack.ToArray();
-            for(var i = 0; i < result.Length; i++)
-            {
-                if (i == result.Length - 1)
-                {
-                    Console.Write($"{result[i]} \n");
-                }
-                else
-                {
-                    Console.Write($"{result[i]}");
-                }
-            }
-        }
         
         public double Evaluate()
         {
