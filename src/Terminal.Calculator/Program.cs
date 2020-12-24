@@ -13,7 +13,7 @@ namespace Terminal.Calculator
                 input = Helper.RemoveWhiteSpace(Console.ReadLine());
                 if (HasValidInput(input))
                 {
-                    ShuntingYard sy = new ShuntingYard(input);
+                    IShuntingYard sy = new ShuntingYard(input);
                     sy.ConvertToPostfix();
                     Console.WriteLine(sy.Evaluate());
                 }

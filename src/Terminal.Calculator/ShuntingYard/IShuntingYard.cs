@@ -4,10 +4,8 @@ namespace Terminal.Calculator
 {
     public interface IShuntingYard
     {
-        double Evaluate();
-
         void ConvertToPostfix();
-
+        double Evaluate();
         string GetPostfix();
     }
 }

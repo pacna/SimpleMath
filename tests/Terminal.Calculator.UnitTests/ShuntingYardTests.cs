@@ -16,7 +16,7 @@ namespace Terminal.Calculator.UnitTests
         {
             // ARRANGE
             input = Helper.RemoveWhiteSpace(input);
-            ShuntingYard sy = new ShuntingYard(input);
+            IShuntingYard sy = new ShuntingYard(input);
             sy.ConvertToPostfix();
 
             // ACT
@@ -36,7 +36,7 @@ namespace Terminal.Calculator.UnitTests
         {
             // ARRANGE
             input = Helper.RemoveWhiteSpace(input);
-            ShuntingYard sy = new ShuntingYard(input);
+            IShuntingYard sy = new ShuntingYard(input);
             sy.ConvertToPostfix();
 
             // ACT
