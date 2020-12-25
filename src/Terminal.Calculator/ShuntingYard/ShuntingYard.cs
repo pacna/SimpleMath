@@ -55,33 +55,33 @@ namespace Terminal.Calculator
 
         public ShuntingYard(string input)
         {
-            this._input = Helper.SplitOperatorsAndNumbers(input);
+            this._input = Helper.SplitOperatorsAndNumbers(input: input);
         }
 
         public void ConvertToPostfix()
         {
             foreach (var token in _input)
             {
-                if (Helper.IsNumber(token))
+                if (Helper.IsNumber(input: token))
                 {
                     _outputQueue.Enqueue(token);
                 }
-                else if (IsOperator(token))
+                else if (IsOperator(op: token))
                 {
-                    while (IsThereAnyOperatorInStack() && HasHigherOrEqualPrecedence(token))
+                    while (IsThereAnyOperatorInStack() && HasHigherOrEqualPrecedence(incomingOp: token))
                     {
                         string opFromStack = _operatorStack.Pop();
                         _outputQueue.Enqueue(opFromStack);
                     }
                     _operatorStack.Push(token);
                 }
-                else if (!IsNotLeftParenthesis(token))
+                else if (!IsNotLeftParenthesis(incomingOp: token))
                 {
                     _operatorStack.Push(token);
                 }
-                else if (IsRightParenthesis(token))
+                else if (IsRightParenthesis(incomingOp: token))
                 {
-                    while (IsNotLeftParenthesis(_operatorStack.Peek()))
+                    while (IsNotLeftParenthesis(incomingOp: _operatorStack.Peek()))
                     {
                         _outputQueue.Enqueue(_operatorStack.Pop());
                     }
@@ -114,7 +114,7 @@ namespace Terminal.Calculator
 
         private bool HasHigherOrEqualPrecedence(string incomingOp)
         {
-            if (IsNotLeftParenthesis(_operatorStack.Peek()))
+            if (IsNotLeftParenthesis(incomingOp: _operatorStack.Peek()))
             {
                 OperatorPrecedenceModel incomingOpPrecedence = _operatorPrecedence[incomingOp];
                 OperatorPrecedenceModel stackOpPrecedence = _operatorPrecedence[_operatorStack.Peek()];
@@ -158,7 +158,7 @@ namespace Terminal.Calculator
             string[] postfix = GetPostfix();
             foreach(var x in postfix)
             {
-                if (Helper.IsNumber(x))
+                if (Helper.IsNumber(input: x))
                 {
                     double operand = Convert.ToDouble(x);
                     outputStack.Push(operand);
