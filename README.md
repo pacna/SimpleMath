@@ -1,6 +1,18 @@
 # Terminal Calculator
 
-A basic calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
+A basic interactive calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
+
+### Terminal
+```
+Pass in a math expression: 3 + 3
+6
+Press q and then ENTER to quit
+Pass in a math expression: This should be invalid
+Invalid input (ノ﹏ヽ)
+Press q and then ENTER to quit
+Pass in a math expression: q
+Bye | (• ◡•)| (❍ᴥ❍ʋ)
+```
 
 ## Prerequisites
 * [dotnet core](https://dotnet.microsoft.com/download)
