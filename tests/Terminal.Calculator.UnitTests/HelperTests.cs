@@ -11,7 +11,41 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldRemoveAllWhiteSpaces(string input, string expectedOutput)
         {
             // ACT
-            string output = Helper.RemoveWhiteSpace(input);
+            string output = Helper.RemoveWhiteSpace(input: input);
+
+            // ASSERT
+            Assert.Equal(expectedOutput, output);
+        }
+
+        [Theory]
+        [InlineData('a', false)]
+        [InlineData('(', false)]
+        [InlineData(')', false)]
+        [InlineData('3', false)]
+        [InlineData('+', true)]
+        [InlineData('-', true)]
+        [InlineData('*', true)]
+        [InlineData('/', true)]
+        [InlineData('^', true)]
+        public void ShouldCheckIfFirstElementIsAnArithmeticOperator(char input, bool expectedOutput)
+        {
+            // ACT
+            bool output = Helper.IsArithmeticOperator(input: input);
+
+            // ASSERT
+            Assert.Equal(expectedOutput, output);
+        }
+
+        [Theory]
+        [InlineData("abc", false)]
+        [InlineData("3", true)]
+        [InlineData("3000", true)]
+        [InlineData("99", true)]
+        [InlineData("this is clearly not a number", false)]
+        public void ShoulCheckIfItIsANumber(string input, bool expectedOutput)
+        {
+            // ACT
+            bool output = Helper.IsNumber(input: input);
 
             // ASSERT
             Assert.Equal(expectedOutput, output);
@@ -24,7 +58,7 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldCheckIfThereIsAnyLetters(string input, bool expectedOutput)
         {
             // ACT
-            bool output = Helper.HasLetters(input);
+            bool output = Helper.HasLetters(input: input);
 
             // ASSERT
             Assert.Equal(expectedOutput, output);
@@ -37,7 +71,7 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldCheckIfThereIsAnyNumbers(string input, bool expectedOutput)
         {
             // ACT
-            bool output = Helper.HasNumbers(input);
+            bool output = Helper.HasNumbers(input: input);
 
             // ASSERT
             Assert.Equal(expectedOutput, output);
@@ -50,7 +84,7 @@ namespace Terminal.Calculator.UnitTests
         public void ShouldCheckIfThereIsAnyInvalidSpecialCharacters(string input, bool expectedOutput)
         {
             // ACT
-            bool output = Helper.HasInvalidSpecialCharacters(input);
+            bool output = Helper.HasInvalidSpecialCharacters(input: input);
 
             // ASSERT
             Assert.Equal(expectedOutput, output);

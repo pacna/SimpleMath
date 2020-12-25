@@ -6,10 +6,10 @@ namespace Terminal.Calculator
 {
     public class ShuntingYard: IShuntingYard
     {
-        private readonly char[] _input;
-        private Stack<char> _operatorStack = new Stack<char>();
-        private Queue<char> _outputQueue = new Queue<char>();
-        private Dictionary<char, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<char, OperatorPrecedenceModel>() {
+        private readonly string[] _input;
+        private Stack<string> _operatorStack = new Stack<string>();
+        private Queue<string> _outputQueue = new Queue<string>();
+        private Dictionary<string, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<string, OperatorPrecedenceModel>() {
             {
                 OperatorTypes.Power, 
                 new OperatorPrecedenceModel() 
@@ -55,14 +55,14 @@ namespace Terminal.Calculator
 
         public ShuntingYard(string input)
         {
-            this._input = input.ToCharArray();
+            this._input = Helper.SplitOperatorsAndNumbers(input);
         }
 
         public void ConvertToPostfix()
         {
             foreach (var token in _input)
             {
-                if (Char.IsDigit(token))
+                if (Helper.IsNumber(token))
                 {
                     _outputQueue.Enqueue(token);
                 }
@@ -70,7 +70,7 @@ namespace Terminal.Calculator
                 {
                     while (IsThereAnyOperatorInStack() && HasHigherOrEqualPrecedence(token))
                     {
-                        char opFromStack = _operatorStack.Pop();
+                        string opFromStack = _operatorStack.Pop();
                         _outputQueue.Enqueue(opFromStack);
                     }
                     _operatorStack.Push(token);
@@ -96,15 +96,15 @@ namespace Terminal.Calculator
             }
         }
 
-        public string GetPostfix()
+        public string[] GetPostfix()
         {
-            string postfixString = "";
+            List<string> postfix = new List<string>();
             foreach(var x in _outputQueue)
             {
-                postfixString = postfixString + x;
+                postfix.Add(x);
             }
             
-            return postfixString;
+            return postfix.ToArray();
         }
 
         private bool IsThereAnyOperatorInStack()
@@ -112,7 +112,7 @@ namespace Terminal.Calculator
             return _operatorStack.Any();
         }
 
-        private bool HasHigherOrEqualPrecedence(char incomingOp)
+        private bool HasHigherOrEqualPrecedence(string incomingOp)
         {
             if (IsNotLeftParenthesis(_operatorStack.Peek()))
             {
@@ -136,17 +136,17 @@ namespace Terminal.Calculator
             }
         }
 
-        private bool IsNotLeftParenthesis(char incomingOp)
+        private bool IsNotLeftParenthesis(string incomingOp)
         {
             return incomingOp != OperatorTypes.LeftParenthesis;
         }
 
-        private bool IsRightParenthesis(char incomingOp)
+        private bool IsRightParenthesis(string incomingOp)
         {
             return incomingOp == OperatorTypes.RightParenthesis;
         }
 
-        private bool IsOperator(char op)
+        private bool IsOperator(string op)
         {
             bool doesExist = _operatorPrecedence.ContainsKey(op);
             return doesExist;
@@ -155,12 +155,12 @@ namespace Terminal.Calculator
         public double Evaluate()
         {
             Stack<double> outputStack = new Stack<double>();
-            char[] postfix = GetPostfix().ToCharArray();
+            string[] postfix = GetPostfix();
             foreach(var x in postfix)
             {
-                if (Char.IsDigit(x))
+                if (Helper.IsNumber(x))
                 {
-                    double operand = Convert.ToDouble(Char.GetNumericValue(x));
+                    double operand = Convert.ToDouble(x);
                     outputStack.Push(operand);
                 }
                 else

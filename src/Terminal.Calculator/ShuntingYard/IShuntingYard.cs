@@ -6,6 +6,6 @@ namespace Terminal.Calculator
     {
         void ConvertToPostfix();
         double Evaluate();
-        string GetPostfix();
+        string[] GetPostfix();
     }
 }

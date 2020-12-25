@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -11,6 +12,11 @@ namespace Terminal.Calculator
             return new string(input.ToCharArray()
                 .Where(c => !Char.IsWhiteSpace(c))
                 .ToArray());
+        }
+
+        public static bool IsArithmeticOperator(char input)
+        {
+            return input == '+' || input == '-' || input == '*' || input == '/' || input == '^';
         }
 
         public static bool HasLetters(string input)
@@ -37,6 +43,23 @@ namespace Terminal.Calculator
             }
             
             return false;
+        }
+
+        public static string ConvertToString(string[] input)
+        {
+            return String.Concat(input);
+        }
+
+        public static bool IsNumber(string input)
+        {
+            return input.All(char.IsNumber);
+        }
+
+        public static string[] SplitOperatorsAndNumbers(string input) 
+        {
+            return Regex.Split(input, @"\s*([()+\*/^-])\s*")
+                    .Where(result => !string.IsNullOrEmpty(result))
+                    .ToArray();
         }
 
         public static bool HasInvalidSpecialCharacters(string input)

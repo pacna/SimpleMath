@@ -11,9 +11,13 @@ namespace Terminal.Calculator
             {
                 Console.Write($"Pass in a math expression: ");
                 input = Helper.RemoveWhiteSpace(Console.ReadLine());
-                if (HasValidInput(input))
+                if (IsFirstElementAnArithmeticOperator(input: input[0]))
                 {
-                    IShuntingYard sy = new ShuntingYard(input);
+                    Console.WriteLine("Can't have an operator initialized in the beginning");
+                }
+                else if (HasValidInput(input: input))
+                {
+                    IShuntingYard sy = new ShuntingYard(input: input);
                     sy.ConvertToPostfix();
                     Console.WriteLine(sy.Evaluate());
                 }
@@ -27,13 +31,18 @@ namespace Terminal.Calculator
                     Console.WriteLine("Invalid input (ノ﹏ヽ)");
                 }
 
-                Console.WriteLine("Press q to quit");
+                Console.WriteLine("Press q and then ENTER to quit");
             }
         }
 
         private static bool HasValidInput(string input)
         {
-            return !Helper.HasLetters(input) && !string.IsNullOrEmpty(input) && Helper.HasNumbers(input) && !Helper.HasInvalidSpecialCharacters(input);
+            return !Helper.HasLetters(input: input) && !string.IsNullOrEmpty(input) && Helper.HasNumbers(input: input) && !Helper.HasInvalidSpecialCharacters(input: input);
+        }
+
+        private static bool IsFirstElementAnArithmeticOperator(char input)
+        {
+            return Helper.IsArithmeticOperator(input: input);
         }
     }
 }

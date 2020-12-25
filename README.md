@@ -1,21 +1,24 @@
 # Terminal Calculator
 
-A basic calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+A basic calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
 
-## Running the app locally
-
-### Prerequisites
+## Prerequisites
 * [dotnet core](https://dotnet.microsoft.com/download)
 
-### Run
-```
-dotnet run
+## Running
+```bash
+# Go to Terminal.Calculator
+$ cd src/Terminal.Calculator
+
+# run
+$ dotnet run
 ```
 
-## Run tests
-1. Go to the `Terminal.Calculator.UnitTests`  folder
+## Running tests
+```bash
+# Go to Terminal.Calculator.UnitTests
+$ cd tests/Terminal.Calculator.UnitTests
 
-### Run
-```
-dotnet test
+# run
+$ dotnet test
 ```
