@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -21,7 +20,7 @@ namespace Terminal.Calculator
 
         public static bool HasLetters(string input)
         {
-            foreach(var x in input)
+            foreach (var x in input)
             {
                 if (Char.IsLetter(x))
                 {
@@ -34,14 +33,14 @@ namespace Terminal.Calculator
 
         public static bool HasNumbers(string input)
         {
-            foreach(var x in input)
+            foreach (var x in input)
             {
                 if (Char.IsDigit(x))
                 {
                     return true;
                 }
             }
-            
+
             return false;
         }
 
@@ -55,7 +54,7 @@ namespace Terminal.Calculator
             return input.All(char.IsNumber);
         }
 
-        public static string[] SplitOperatorsAndNumbers(string input) 
+        public static string[] SplitOperatorsAndNumbers(string input)
         {
             return Regex.Split(input, @"\s*([()+\*/^-])\s*")
                     .Where(result => !string.IsNullOrEmpty(result))

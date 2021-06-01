@@ -1,7 +1,4 @@
-using System;
 using Xunit;
-using System.Collections.Generic;
-using Terminal.Calculator;
 
 namespace Terminal.Calculator.UnitTests
 {
@@ -34,7 +31,7 @@ namespace Terminal.Calculator.UnitTests
         [InlineData("6/3*4", 8.0)]
         [InlineData("3^4^2", 43046721.0)]
         [InlineData("7 + (6 * 5^2 + 3)", 160.0)]
-        public void ShouldEvaluatetheExpressionCorrectly(string input, double expectedOutput)
+        public void ShouldEvaluateTheExpressionCorrectly(string input, double expectedOutput)
         {
             // ARRANGE
             input = Helper.RemoveWhiteSpace(input: input);
