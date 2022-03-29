@@ -20,4 +20,4 @@ jobs:
     - name: Build
       run: dotnet build ./src/Terminal.Calculator --no-restore
     - name: Test
-      run: dotnet test ./tests/Terminal.Calculator.UnitTests --no-build --verbosity normal
+      run: dotnet test ./tests/Terminal.Calculator.UnitTests
