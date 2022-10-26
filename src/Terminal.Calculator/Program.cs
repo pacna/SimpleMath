@@ -7,7 +7,7 @@ namespace Terminal.Calculator
         static void Main(string[] args)
         {
             string input = "";
-            while(input != "q")
+            while (input != "q")
             {
                 Console.Write($"Pass in a math expression: ");
                 input = Helper.RemoveWhiteSpace(Console.ReadLine());
@@ -26,7 +26,7 @@ namespace Terminal.Calculator
                     Console.WriteLine("Bye | (• ◡•)| (❍ᴥ❍ʋ)");
                     return;
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Invalid input (ノ﹏ヽ)");
                 }

@@ -20,7 +20,7 @@ namespace Terminal.Calculator
 
         public static bool HasLetters(string input)
         {
-            foreach (var x in input)
+            foreach (char x in input)
             {
                 if (Char.IsLetter(x))
                 {
@@ -33,7 +33,7 @@ namespace Terminal.Calculator
 
         public static bool HasNumbers(string input)
         {
-            foreach (var x in input)
+            foreach (char x in input)
             {
                 if (Char.IsDigit(x))
                 {

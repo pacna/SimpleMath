@@ -1,8 +1,11 @@
 # Terminal Calculator
 
-A basic interactive calculator that uses the  [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
+<img alt="Dotnet test passing" src="https://github.com/pacna/Terminal.Calculator/workflows/Test%20CI/badge.svg" />
+
+A basic interactive calculator that uses the [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
 
 ### Terminal
+
 ```
 Pass in a math expression: 3 + 3
 6
@@ -15,9 +18,11 @@ Bye | (• ◡•)| (❍ᴥ❍ʋ)
 ```
 
 ## Prerequisites
-* [dotnet core](https://dotnet.microsoft.com/download)
+
+- [dotnet core](https://dotnet.microsoft.com/download)
 
 ## Running
+
 ```bash
 # Go to Terminal.Calculator
 $ cd src/Terminal.Calculator
@@ -27,6 +32,7 @@ $ dotnet run
 ```
 
 ## Running tests
+
 ```bash
 # Go to Terminal.Calculator.UnitTests
 $ cd tests/Terminal.Calculator.UnitTests

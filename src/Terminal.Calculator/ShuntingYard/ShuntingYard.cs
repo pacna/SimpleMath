@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace Terminal.Calculator
 {
-    public class ShuntingYard: IShuntingYard
+    public class ShuntingYard : IShuntingYard
     {
         private readonly string[] _input;
         private Stack<string> _operatorStack = new Stack<string>();
         private Queue<string> _outputQueue = new Queue<string>();
         private Dictionary<string, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<string, OperatorPrecedenceModel>() {
             {
-                OperatorTypes.Power, 
-                new OperatorPrecedenceModel() 
+                OperatorTypes.Power,
+                new OperatorPrecedenceModel()
                 {
                     Precedence = 3,
                     Associativity = AssociativityTypes.Right
@@ -25,7 +25,7 @@ namespace Terminal.Calculator
                     Precedence = 2,
                     Associativity = AssociativityTypes.Left
                 }
-                
+
             },
             {
                 OperatorTypes.Division,
@@ -60,7 +60,7 @@ namespace Terminal.Calculator
 
         public void ConvertToPostfix()
         {
-            foreach (var token in _input)
+            foreach (string token in _input)
             {
                 if (Helper.IsNumber(input: token))
                 {
@@ -99,11 +99,11 @@ namespace Terminal.Calculator
         public string[] GetPostfix()
         {
             List<string> postfix = new List<string>();
-            foreach(var x in _outputQueue)
+            foreach (string x in _outputQueue)
             {
                 postfix.Add(x);
             }
-            
+
             return postfix.ToArray();
         }
 
@@ -119,8 +119,8 @@ namespace Terminal.Calculator
                 OperatorPrecedenceModel incomingOpPrecedence = _operatorPrecedence[incomingOp];
                 OperatorPrecedenceModel stackOpPrecedence = _operatorPrecedence[_operatorStack.Peek()];
 
-                if (stackOpPrecedence.Precedence > incomingOpPrecedence.Precedence || 
-                    (incomingOpPrecedence.Precedence == stackOpPrecedence.Precedence 
+                if (stackOpPrecedence.Precedence > incomingOpPrecedence.Precedence ||
+                    (incomingOpPrecedence.Precedence == stackOpPrecedence.Precedence
                         && incomingOpPrecedence.Associativity.Equals(AssociativityTypes.Left)))
                 {
                     return true;
@@ -151,12 +151,12 @@ namespace Terminal.Calculator
             bool doesExist = _operatorPrecedence.ContainsKey(op);
             return doesExist;
         }
-        
+
         public double Evaluate()
         {
             Stack<double> outputStack = new Stack<double>();
             string[] postfix = GetPostfix();
-            foreach(var x in postfix)
+            foreach (string x in postfix)
             {
                 if (Helper.IsNumber(input: x))
                 {
@@ -175,7 +175,7 @@ namespace Terminal.Calculator
 
                     if (x == OperatorTypes.Addition)
                     {
-                        double result =  leftOperand + rightOperand;
+                        double result = leftOperand + rightOperand;
                         outputStack.Push(result);
                     }
                     else if (x == OperatorTypes.Subtraction)
@@ -188,19 +188,19 @@ namespace Terminal.Calculator
                         double result = leftOperand * rightOperand;
                         outputStack.Push(result);
                     }
-                    else if ( x == OperatorTypes.Division)
+                    else if (x == OperatorTypes.Division)
                     {
                         double result = leftOperand / rightOperand;
                         outputStack.Push(result);
                     }
-                    else 
+                    else
                     {// this must be pow
                         double result = Math.Pow(leftOperand, rightOperand);
                         outputStack.Push(result);
                     }
                 }
             }
-            
+
             return outputStack.Peek();
         }
     }
