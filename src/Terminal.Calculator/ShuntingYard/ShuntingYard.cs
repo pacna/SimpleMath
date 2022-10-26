@@ -7,9 +7,9 @@ namespace Terminal.Calculator
     public class ShuntingYard : IShuntingYard
     {
         private readonly string[] _input;
-        private Stack<string> _operatorStack = new Stack<string>();
-        private Queue<string> _outputQueue = new Queue<string>();
-        private Dictionary<string, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<string, OperatorPrecedenceModel>() {
+        private readonly Stack<string> _operatorStack = new Stack<string>();
+        private readonly Queue<string> _outputQueue = new Queue<string>();
+        private IReadOnlyDictionary<string, OperatorPrecedenceModel> _operatorPrecedence = new Dictionary<string, OperatorPrecedenceModel>() {
             {
                 OperatorTypes.Power,
                 new OperatorPrecedenceModel()
