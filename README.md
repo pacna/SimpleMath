@@ -1,6 +1,6 @@
-# Terminal Calculator
+# Simple Math
 
-<img alt="Dotnet test passing" src="https://github.com/pacna/Terminal.Calculator/workflows/Test%20CI/badge.svg" />
+<img alt="Dotnet test passing" src="https://github.com/pacna/SimpleMath/workflows/Test%20CI/badge.svg" />
 
 A basic interactive calculator that uses the [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
 
@@ -19,13 +19,13 @@ Bye | (• ◡•)| (❍ᴥ❍ʋ)
 
 ## Prerequisites
 
-- [dotnet core](https://dotnet.microsoft.com/download)
+-   [dotnet core](https://dotnet.microsoft.com/download)
 
 ## Running
 
 ```bash
-# Go to Terminal.Calculator
-$ cd src/Terminal.Calculator
+# Go to SimpleMath
+$ cd src/SimpleMath
 
 # run
 $ dotnet run
@@ -34,8 +34,8 @@ $ dotnet run
 ## Running tests
 
 ```bash
-# Go to Terminal.Calculator.UnitTests
-$ cd tests/Terminal.Calculator.UnitTests
+# Go to SimpleMath.UnitTests
+$ cd tests/SimpleMath.UnitTests
 
 # run
 $ dotnet test
