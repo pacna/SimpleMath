@@ -50,7 +50,6 @@ public abstract class BaseButton : IComponent
 
     public void Update()
     {
-        
         MouseState mouseState = Mouse.GetState();
         Rectangle cursor = new Rectangle(x: mouseState.X, y: mouseState.Y, width: 1, height: 1);
 
